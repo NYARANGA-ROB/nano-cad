@@ -1,0 +1,10 @@
+gunicorn
+Flask
+Flask-SQLAlchemy
+Flask-WTF
+WTForms
+SQLAlchemy
+pyinstaller
+waitress
+PySide2
+pywebview
