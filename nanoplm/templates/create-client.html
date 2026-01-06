@@ -1,0 +1,20 @@
+{% extends "base-mainview.html"%}
+
+{% block style %}{% endblock style %}
+
+{% block content %}
+<h1 class="mb-5">Neuer Kunde</h1>
+<form action="{{ url_for('create_client')}}" method="POST">
+    {{ form.csrf_token }}
+    <table>
+        <tr>
+            <td>{{ form.name.label(style="padding-right: 10px;") }}</td>
+            <td>{{ form.name(autocomplete="off") }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="padding-top: 2rem;">{{ form.submit(style="min-width:100%;") }}</td>
+        </tr>
+    </table>
+</form>
+{% endblock content %}
