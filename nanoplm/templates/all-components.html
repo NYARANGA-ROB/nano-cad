@@ -1,0 +1,55 @@
+{% extends "base-mainview.html"%}
+
+{% block style %}{% endblock style %}
+
+{% block content %}
+<h1 class="mb-5">Alle Komponenten</h1>
+<button type="button" class="btn btn-outline-dark mb-3" onclick="showCreateComponent()"><i class="bi-plus-lg" style="padding-right: 6px;"></i>Neue Komponente</button>
+<p class="mb-2">Es wurden {{ len(components) }} Komponenten gefunden.</p>
+<table class="table table-striped" style="outline-style: solid; outline-color: lightgray; outline-width: 1px;">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Beschreibung</th>
+            <th>UUID</th>
+            <th>Nummer</th>
+            <th>Erstellungsdatum</th>
+            <th>Status</th>
+            <th>Dateien</th>
+            <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for component in components %}
+        <tr>
+            <td>{{ component.name }}</td>
+            <td>{{ component.description }}</td>
+            <td>{{ component.uuid }}</td>
+            <td>{{ component.component_number }}</td>
+            <td>{{ component.date_created }}</td>
+            <td>{{ component.status }}</td>
+            <td>{{ component.files }}</td>
+            <td>
+                <nobr>
+                    <a class="btn btn-secondary" style="padding-left: 10px; padding-right: 10px;" href="{{ url_for('read_component', component_uuid = component.uuid) }}"><i class="bi-eye"></i></a>
+                    <a class="btn btn-outline-secondary" style="padding-left: 10px; padding-right: 10px;" href="{{ url_for('update_component', component_uuid = component.uuid) }}"><i class="bi-pencil"></i></a>
+                    <a class="btn btn-outline-danger" style="padding-left: 10px; padding-right: 10px;" href="{{ url_for('delete_component', component_uuid = component.uuid) }}"><i class="bi-x-lg"></i></a>
+                </nobr>
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    
+      
+
+</table>
+
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    function showCreateComponent(){
+        window.top.document.getElementById("main-view-iframe").src = "{{ url_for('create_component') }}";
+    }
+</script>
+{% endblock scripts %}
